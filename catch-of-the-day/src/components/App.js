@@ -1,22 +1,35 @@
 import React from "react";
-import Header from './Header';
-import Order from './Order';
-import Inventory from './Inventory';
-
+import Header from "./Header";
+import Order from "./Order";
+import Inventory from "./Inventory";
 
 class App extends React.Component {
-    render(){
-        return (
-        <div className="catch-of-the-day">
-            <div className="menu">
-            <Header tagline="Fresh Seafood Daily" age={100} />
-            
-            </div>
-            <Order />
-            <Inventory />
+  state = {
+    fishes: {},
+    order: {}
+  };
+  addFish = fish => {
+    // 1. Take a copy of the existing state
+    const fishes = { ...this.state.fishes };
+    // 2. Add New Fish to our fishes var
+    fishes[`fish${Date.now()}`] = fish;
+    // 3. Set new fishes object to state
+    this.setState({
+      fishes: fishes
+      // or just 'fishes' because ES6
+    });
+  };
+  render() {
+    return (
+      <div className="catch-of-the-day">
+        <div className="menu">
+          <Header tagline="Fresh Seafood Daily" age={100} />
         </div>
-        )
-    } 
+        <Order />
+        <Inventory addFish={this.addFish} />
+      </div>
+    );
+  }
 }
 
 export default App;
