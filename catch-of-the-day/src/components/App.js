@@ -11,12 +11,15 @@ class App extends React.Component {
   addFish = fish => {
     // 1. Take a copy of the existing state
     const fishes = { ...this.state.fishes };
-    // 2. Add New Fish to our fishes var
+    // 2. Add New Fish to our fishes var with unique timestamp
     fishes[`fish${Date.now()}`] = fish;
     // 3. Set new fishes object to state
     this.setState({
-      fishes: fishes
-      // or just 'fishes' because ES6
+      fishes
+      // could also be
+      // fishes: fishes
+      // we're using just 'fishes' because ES6 allows key/val
+      // pairs that match to be just one thing.
     });
   };
   render() {

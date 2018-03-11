@@ -16,6 +16,9 @@ class AddFishForm extends React.Component {
       desc: this.descRef.value.value,
       image: this.imageRef.value.value
     };
+    // all of which is gets passed to
+    // addfish which is passed down from app.js
+
     this.props.addFish(fish);
     // 2. Refresh Le Form
     event.currentTarget.reset();
